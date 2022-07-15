@@ -14,6 +14,7 @@ ADD species VARCHAR(50);
 BEGIN TRANSACTION;
 UPDATE animals
 SET species= 'unspecified';
+SELECT species from animals;
 ROLLBACK;
 BEGIN TRANSACTION;
 UPDATE animals
@@ -21,7 +22,7 @@ SET species= 'digimon'
 WHERE name LIKE '%mon';
 UPDATE animals
 SET species= 'pokemon'
-WHERE species ISNULL;
+WHERE species IS NULL;
 COMMIT TRANSACTION;
 BEGIN TRANSACTION;
 DELETE FROM animals;
