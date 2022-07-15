@@ -52,3 +52,37 @@ WHERE name = 'Agumon';
 UPDATE animals
 SET owner_id=(SELECT id FROM owners WHERE full_name ='Jennifer Orwell')
 WHERE name IN ('Gabumon', 'Pikachu');
+
+INSERT INTO vets (name, age, date_of_graduation)
+VALUES ('William Tatcher',45,'Apr-23-2000'),
+  ('Maisy Smith', 26, 'Jan-17-2019'),
+  ('Stephanie Mendez', 64, 'May-04-1981'),
+  ('Jack Harkness', 38, 'Jun-08-2008');
+
+INSERT INTO specializations (species_id, vet_id)
+VALUES ((SELECT id FROM species WHERE species.name = 'Pokemon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'William Tatcher' LIMIT 1)),
+  ((SELECT id FROM species WHERE species.name = 'Digimon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez' LIMIT 1)),
+  ((SELECT id FROM species WHERE species.name = 'Pokemon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez' LIMIT 1)),
+  ((SELECT id FROM species WHERE species.name = 'Digimon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness' LIMIT 1));
+
+INSERT INTO visits ( animal_id, vet_id, date_of_visit)
+VALUES ((SELECT id FROM animals WHERE animals.name = 'Agumon'), (SELECT id FROM vets WHERE vets.name = 'William Tatcher' LIMIT 1), 'May-24-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Agumon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez' LIMIT 1), 'Jul-22-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Gabumon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness' LIMIT 1), 'Feb-02-2021'),
+((SELECT id FROM animals WHERE animals.name = 'Pikachu' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith' LIMIT 1), 'Jan-05-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Pikachu' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith' LIMIT 1), 'Mar-08-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Pikachu' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith' LIMIT 1), 'May-14-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Devimon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez' LIMIT 1), 'May-04-2021'),
+((SELECT id FROM animals WHERE animals.name = 'Charmander' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness' LIMIT 1), 'Feb-24-2021'),
+((SELECT id FROM animals WHERE animals.name = 'Plantmon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith' LIMIT 1), 'Dec-21-2019'),
+((SELECT id FROM animals WHERE animals.name = 'Plantmon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'William Tatcher' LIMIT 1), 'Aug-10-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Plantmon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith' LIMIT 1), 'Apr-07-2021'),
+((SELECT id FROM animals WHERE animals.name = 'Squirtle' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez' LIMIT 1), 'Sep-29-2019'),
+((SELECT id FROM animals WHERE animals.name = 'Angemon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness' LIMIT 1), 'Oct-03-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Angemon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness' LIMIT 1), 'Nov-04-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Boarmon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith' LIMIT 1), 'Jan-24-2019'),
+((SELECT id FROM animals WHERE animals.name = 'Boarmon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith' LIMIT 1), 'May-15-2019'),
+((SELECT id FROM animals WHERE animals.name = 'Boarmon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith' LIMIT 1), 'Feb-27-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Boarmon' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith' LIMIT 1), 'Aug-03-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Blossom' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez' LIMIT 1), 'May-24-2020'),
+((SELECT id FROM animals WHERE animals.name = 'Blossom' LIMIT 1), (SELECT id FROM vets WHERE vets.name = 'William Tatcher' LIMIT 1), 'Jan-11-2021');

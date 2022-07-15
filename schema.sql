@@ -47,3 +47,23 @@ CREATE TABLE owners (
   full_name VARCHAR(255),
   age INT,
   PRIMARY KEY (id));
+
+CREATE TABLE vets (
+  id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+  name varchar(255),
+  age INT,
+  date_of_graduation date,
+  PRIMARY KEY (id));
+
+CREATE TABLE visits (
+  animal_id INT NOT NULL,
+  vet_id INT NOT NULL,
+  date_of_visit date,
+  CONSTRAINT fk_animals FOREIGN KEY (animal_id) REFERENCES animals(id),
+  CONSTRAINT fk_vets FOREIGN KEY (vet_id) REFERENCES vets(id));
+  
+CREATE TABLE specializations (
+  species_id INT NOT NULL,
+  vet_id INT NOT NULL,
+  CONSTRAINT fk_species FOREIGN KEY (species_id) REFERENCES species(id),
+  CONSTRAINT fk_vets FOREIGN KEY (vet_id) REFERENCES vets(id));
