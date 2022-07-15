@@ -34,3 +34,11 @@ UPDATE animals SET weight_kg= weight_kg * -1;
 ROLLBACK TO SP1;
 UPDATE animals SET weight_kg= weight_kg* -1 WHERE weight_kg < 0;
 COMMIT TRANSACTION;
+
+ALTER TABLE animals DROP COLUMN species;
+
+CREATE TABLE owners (
+  id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+  full_name VARCHAR(255),
+  age INT,
+  PRIMARY KEY (id));
